@@ -2,10 +2,10 @@
 name: CI
 
 on: # yamllint disable-line rule:truthy
-  pull_request:
-    branches: [{{ default_branch }}]
   push:
-    branches: [{{ default_branch }}]
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 concurrency:
   {% raw -%}
