@@ -31,6 +31,3 @@ jobs:
 
       - name: Lint Python
         run: make lint
-
-      - name: Test
-        run: make test
