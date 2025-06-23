@@ -8,7 +8,7 @@
 {%- endif %}
 [![Linting: Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/charliermarsh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
 [![{{ package_manager }}-managed](https://img.shields.io/badge/{{ package_manager }}-managed-blue)]({{ macros.package_manager_url() }})
-[![License - MIT](https://img.shields.io/badge/licence%20-MIT-1ac403.svg)](https://github.com/{{ repository_owner }}/{{ repository_name }}/blob/main/LICENSE)
+[![License - MIT](https://img.shields.io/badge/licence%20-MIT-1ac403.svg)](https://github.com/{{ repository_owner }}/{{ repository_name }}/blob/{{ default_branch }}/LICENSE)
 
 ---
 
@@ -20,13 +20,17 @@ This repository includes a pre-configured Bandit security scan workflow for auto
 
 1. Rename [.github/security-scan.yml.example](.github/security-scan.yml.example) to `.github/security-scan.yml`
 2. Move the file from [.github](.github) to the [.github/workflows](.github/workflows) folder
+    Use this command to move the file:
+    ```bash
+    mv .github/security-scan.yml.example .github/workflows/security-scan.yml
+    ```
 3. Commit and push the change
 
 **Why this step is needed:**
 GitHub Actions security restrictions prevent automatic creation of workflow files during template initialisation.
 Learn more about [GitHub Token permissions and workflow limitations](https://docs.github.com/en/actions/security-guides/automatic-token-authentication#permissions-for-the-github_token).
 
-Once enabled, the Security Scan will automatically run on all Pull Requests and commits to `main`, checking for:
+Once enabled, the Security Scan will automatically run on all Pull Requests and commits to `{{ default_branch }}`, checking for:
 
 - Common security issues in Python code
 - Hardcoded passwords, API keys, and tokens

@@ -3,7 +3,9 @@ name: Ruff Auto-Fix
 
 on: # yamllint disable-line rule:truthy
   pull_request:
-    branches: [main]
+    branches: [{{ default_branch }}]
+  push:
+    branches: [{{ default_branch }}]
 
 permissions:
   contents: write  # required to push the formatted code
