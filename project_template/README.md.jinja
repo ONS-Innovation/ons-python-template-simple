@@ -216,19 +216,19 @@ The project includes pre-commit hooks to automatically run linting, formatting, 
 
 1. Install **pre-commit** using your selected package manager:
 
-   {% if package_manager == 'poetry' %}
-   ```bash
-   poetry add --group dev pre-commit
-   ```
-   {% elif package_manager == 'pipenv' %}
-   ```bash
-   pipenv install --dev pre-commit
-   ```
-   {% else %}
-   ```bash
-   pip install pre-commit
-   ```
-   {% endif %}
+{% if package_manager == 'poetry' %}
+```bash
+poetry add --group dev pre-commit
+```
+{% elif package_manager == 'pipenv' %}
+```bash
+pipenv install --dev pre-commit
+```
+{% else %}
+```bash
+pip install pre-commit
+```
+{% endif %}
 
 2. Activate the git hooks:
 
