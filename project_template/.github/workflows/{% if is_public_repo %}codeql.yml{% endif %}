@@ -8,10 +8,11 @@
 name: CodeQL
 
 on: # yamllint disable-line rule:truthy
-  pull_request:
-    branches: [{{ default_branch }}]
   push:
-    branches: [{{ default_branch }}]
+    branches: [main]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [main]
 
   schedule:
     # Run on a daily interval at 12pm UTC
