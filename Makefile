@@ -7,13 +7,14 @@ all: ## Show the available make targets.
 	@echo "Targets:"
 	@fgrep "##" Makefile | fgrep -v fgrep
 
-.PHONY: lint
-lint:  ## Run Python linter
-	echo "Not implemented yet"
+.PHONY: format
+format:  ## Format the code using Ruff.
+	poetry run ruff format .
+	poetry run ruff check . --fix
 
-.PHONY: test
-test:  ## Run the tests
-	echo "Not implemented yet"
+.PHONY: lint
+lint:  ## Run Python linter using Ruff.
+	poetry run ruff check .
 
 .PHONY: install
 install:  ## Install the dependencies excluding dev.
@@ -23,17 +24,10 @@ install:  ## Install the dependencies excluding dev.
 install-dev:  ## Install the dependencies including dev.
 	poetry install
 
-.PHONY: megalint
-megalint:  ## Run the mega-linter.
-	docker run --platform linux/amd64 --rm \
-		-v /var/run/docker.sock:/var/run/docker.sock:rw \
-		-v $(shell pwd):/tmp/lint:rw \
-		oxsecurity/megalinter:v7
-
 .PHONY: update-template-packages
 update-template-packages:  ## Update the project using the initial copier template.
 	cd scripts/package_manager_helper && ./update_template_packages.sh && cd ../..
 
 .PHONY: clean
 clean: ## Clean the temporary files.
-	rm -rf megalinter-reports
+	rm -rf .ruff_cache

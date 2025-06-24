@@ -1,5 +1,5 @@
 ---
-name: CI
+name: Security Scan
 
 on: # yamllint disable-line rule:truthy
   push:
@@ -14,8 +14,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint-test:
-    name: Lint and Test
+  security-scan:
+    name: Bandit Security Scan
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
@@ -38,8 +38,5 @@ jobs:
       - name: Install dependencies
         run: make install-dev
 
-      - name: Lint Python
-        run: make lint
-
-      - name: Test
-        run: make test
+      - name: Security scan
+        run: make security-scan
