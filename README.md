@@ -40,25 +40,25 @@ This template includes a number of features to help you get started developing y
 
 - Python package/environment management with [Poetry](https://python-poetry.org/)
   or [Pipenv](https://pipenv.pypa.io/en/latest/)
-- Python Linting/Formatting with:
-    - [Ruff](https://github.com/astral-sh/ruff) - An all-in-one alternative to tools such as flake8, isort, pydocstyle,
-      pyupgrade, autoflake etc.
+- Python Linting/Formatting with [Ruff](https://github.com/astral-sh/ruff) -
+  An all-in-one alternative to tools such as flake8, isort, pydocstyle, pyupgrade, autoflake etc.
 - Testing with [pytest](https://docs.pytest.org/en/stable/)
 - Code Coverage with [pytest-cov](https://pytest-cov.readthedocs.io/en/latest/)
 - Security Scanning with [Bandit](https://bandit.readthedocs.io/en/latest/)
 - Continuous Integration using [GitHub Actions](https://docs.github.com/en/actions) with jobs to lint and test your
-  project.
+  project
 - Security with:
     - GitHub [Dependabot](https://docs.github.com/en/code-security/getting-started/dependabot-quickstart-guide)
       Security & Version Updates
     - GitHub [CodeQL](https://codeql.github.com/) Scanning (Public Repos Only)
-- A Makefile containing commands to automate common tasks such as installing, testing, linting, formatting the project.
-- A GitHub Issue and Pull Request template to help you get started with your project.
+- A Makefile containing commands to automate common tasks such as installing, testing, linting, formatting the project
+- A GitHub Issue and Pull Request template to help you get started with your project
 - Basic configuration for [EditorConfig](https://editorconfig.org/) to maintain consistent coding styles across various
-  editors and IDEs.
-- Extensible Python linting and formatting configuration using pyproject.toml, ensuring adherence to best practices.
+  editors and IDEs
+- Extensible Python linting and formatting configuration using pyproject.toml, ensuring adherence to best practices
 - Linting the rest of the repository files/formats such as YAML, GitHub Actions, Shell scripts etc.
-- **GitHub Usage Policy Compliance** including:
+- Pre-commit-configuration with an optional setup
+- GitHub Usage Policy Compliance including:
     - CODEOWNERS file generation
     - Repository naming validation
     - PIRR template for private/internal repositories
@@ -104,7 +104,7 @@ To get started:
 
 #### Prerequisites
 
-1. **Python 3.10+**: We recommend using [pyenv](https://github.com/pyenv/pyenv) for managing Python versions.
+1. **Python 3.12+**: We recommend using [pyenv](https://github.com/pyenv/pyenv) for managing Python versions.
 2. **[Pip](https://pip.pypa.io/en/stable/installation/) or [Pipx](https://pipx.pypa.io/stable/)**
 3. **[Copier](https://github.com/copier-org/copier)**: Install Copier using pip or pipx.
 
@@ -152,7 +152,7 @@ have been automatically done for you.**
    ```
 
 2. Create a new repo in GitHub.
-   See [GitHub How-to](<https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories>]
+   See [GitHub How-to](<https://docs.github.com/en/repositories/creating-and-managing-repositories/quickstart-for-repositories>).
 
 3. Push your project to the repository on GitHub:
 
@@ -193,15 +193,10 @@ If you answered `Yes` to the `Do you want to set up the git repository?` questio
 automatically configured for you. However, it is recommended to review these settings to ensure they meet your
 requirements.
 
-#### 3. GitHub Usage Policy Compliance
+#### 3. CODEOWNERS file
 
-This template helps ensure compliance with the ONS GitHub Usage Policy by automatically including:
-
-- **CODEOWNERS file**: Automatically created with the specified code owners for the repository
-- **Repository naming validation**: Enforces lowercase, hyphen/underscore naming conventions
-- **Private/Internal Repository Reasoning Record (PIRR)**: Generated for non-public repositories with guidance for completion
-- **Compliance checklist**: Added to the generated README to guide developers through required steps
-- **Enhanced .gitignore**: Includes patterns to prevent accidental commit of sensitive files
+This file is automatically created and placed in [.github](/.github). It will automatically be filled with the repository owner.
+Make sure to update this file with the username or team for the code owners of the repository.
 
 ##### Auto-fixing linting issues via GitHub Actions
 
@@ -246,29 +241,11 @@ The structure of the templated repo is as follows:
 <!-- markdownlint-disable MD013 -->
 
 ```plaintext
-├── .github                           # Contains GitHub-specific configurations, including Actions workflows for CI/CD processes.
-│   ├── workflows                     # Directory for GitHub Actions workflows.
-│   │   ├── ci.yml                    # Workflow for Continuous Integration, running tests and other checks on commits to `main` and on pull requests.
-│   │   ├── codeql.yml                # CodeQL workflow for automated identification of security vulnerabilities in the codebase. (Public Repos Only)
-│   ├── security-scan.yml.example     # Security scan workflow for running Bandit on the project. Needs to be renamed to security-scan.yml and moved to the [.github/workflows](.github/workflows) folder
-│   ├── dependabot.yml                # Configuration for Dependabot, which automatically checks for outdated dependencies and creates pull requests to update them.
-│   ├── ISSUE_TEMPLATE.md             # Template for issues raised in the repository.
-│   ├── PULL_REQUEST_TEMPLATE.md      # Template for pull requests raised in the repository.
-│   └── release.yml                   # Configuration on how to categorise changes into a structured changelog when using 'Generate release notes' feature.
-├── app                               # Main Python package directory for the project, containing source code.
-│   ├── __init__.py                   # Initialises the directory as a Python package, allowing its modules to be imported.
-│   └── calculator.py                 # A simple Python class for demonstration purposes.
-└── tests                             # Contains all test files.
-│   ├── __init__.py                   # Marks the directory as a Python package, enabling the discovery of test modules by testing frameworks.
-│   └── unit                          # Directory for unit tests, containing tests for individual components of the project.
-│       ├── __init__.py               # Further organises tests into a Python package structure.
-│       ├── conftest.py               # Contains pytest fixtures and configurations, applicable to all tests in the directory.
-│       └── test_calculator.py        # Unit tests for the functionality provided by sample python code for demonstration purposes.
 ├── .copier-answers.yml               # Configuration file for Copier, specifying the answers to prompts when generating the project. Required for project updates.
 ├── .editorconfig                     # Configuration file for maintaining consistent coding styles for multiple developers working on the same project across various editors and IDEs.
-├── .gitattributes                    # Git attributes file for defining attributes per path, such as line endings and merge strategies.
 ├── .gitignore                        # Specifies intentionally untracked files to ignore when using Git, like build outputs and temporary files.
 ├── .python-version                   # Specifies the Python version to be used with pyenv.
+├── .pre-commit-config.yaml           # Pre-commit configuration for Ruff and Bandit.
 ├── CODE_OF_CONDUCT.md                # A code of conduct for the project, outlining the standards of behaviour for contributors.
 ├── CONTRIBUTING.md                   # Guidelines for contributing to the project, including information on how to raise issues and submit pull requests.
 ├── LICENSE                           # The license under which the project is made available.
@@ -279,7 +256,34 @@ The structure of the templated repo is as follows:
 ├── Pipfile                           # Used by pipenv package manager to specify dependencies and their versions. (Exists if pipenv is selected as the package manager)
 ├── Pipfile.lock                      # Lock file for Poetry, pinning exact versions of dependencies to ensure consistent builds. (Exists if pipenv is selected as the package manager)
 ├── README.md                         # The main README file providing an overview of the project, setup instructions, and other essential information.
-└── SECURITY.md                       # A security policy for the project, providing information on how to report security vulnerabilities.
+├── SECURITY.md                       # A security policy for the project, providing information on how to report security vulnerabilities.
+├── .github                           # Contains GitHub-specific configurations, including Actions workflows for CI/CD processes.
+│   ├── linters                       # Directory for Linter workflows.
+│   │   ├── .checkov.yml              # Checkov configuration file for scanning the codebase for security vulnerabilities.
+│   │   ├── .markdown-link-check.json # Markdown link check configuration file for checking the links in the README.md file.
+│   │   ├── .markdown-lint.yml        # Markdown lint configuration file for linting the README.md file.
+│   │   ├── .yaml-lint.yml            # YAML lint configuration file for linting the YAML files in the repository.
+│   │   └── kics.config               # KICS configuration file for scanning the codebase for security vulnerabilities.
+│   ├── workflows                     # Directory for GitHub Actions workflows.
+│   │   ├── ci.yml                    # Workflow for Continuous Integration, running tests and other checks on commits to `main` and on pull requests.
+│   │   └── codeql.yml                # CodeQL workflow for automated identification of security vulnerabilities in the codebase. (Public Repos Only)
+│   ├── security-scan.yml.example     # Security scan workflow for running Bandit on the project. Needs to be renamed to security-scan.yml and moved to the [.github/workflows](.github/workflows) folder
+│   ├── security-scan-fix.yml.example # Security scan workflow with auto-fixing for running Bandit on the project. Needs to be renamed to security-scan-fix.yml and moved to the [.github/workflows](.github/workflows) folder.
+│   ├── ruff-fix.yml.example          # Ruff fix workflow with auto-fixing for running Ruff on the project. Needs to be renamed to ruff-fix.yml and moved to the [.github/workflows](.github/workflows) folder.
+│   ├── CODEOWNERS.yml                # CODEOWNERS file for the repository.
+│   ├── dependabot.yml                # Configuration for Dependabot, which automatically checks for outdated dependencies and creates pull requests to update them.
+│   ├── ISSUE_TEMPLATE.md             # Template for issues raised in the repository.
+│   ├── PULL_REQUEST_TEMPLATE.md      # Template for pull requests raised in the repository.
+│   └── release.yml                   # Configuration on how to categorise changes into a structured changelog when using 'Generate release notes' feature.
+├── app                               # Main Python package directory for the project, containing source code.
+│   ├── __init__.py                   # Initialises the directory as a Python package, allowing its modules to be imported.
+│   └── calculator.py                 # A simple Python class for demonstration purposes.
+├── tests                             # Contains all test files.
+│   ├── __init__.py                   # Marks the directory as a Python package, enabling the discovery of test modules by testing frameworks.
+│   └── unit                          # Directory for unit tests, containing tests for individual components of the project.
+│       ├── __init__.py               # Further organises tests into a Python package structure.
+│       ├── conftest.py               # Contains pytest fixtures and configurations, applicable to all tests in the directory.
+│       └── test_calculator.py        # Unit tests for the functionality provided by sample python code for demonstration purposes.
 ```
 
 <!-- markdownlint-enable MD013 -->
@@ -371,17 +375,15 @@ There are many alternatives to the tools used in this template, and you may pref
 
 - Add tests
 - Add more documentation and developer guidance
-- Add support for pre-commit hooks
 - Further customisation options for the template:
-    - Ability to choose your own Package Manager (Poetry, Pipenv, PDM, etc.)
-    - Ability to choose your own Linting/Formatting tools
+    - Ability to choose other/multiple Package Managers (Poetry, Pipenv, PDM, etc.)
+    - Ability to choose other/multiple Linting/Formatting tools
     - Ability to configure the GitHub repo setting post-generation via GitHub Template feature.
-- Integrate with the ONS Software Developer Portal.
 - Ability to update the project with the latest template changes.
 
 ## Development
 
-:TODO: Add instructions for development
+:TODO: Add instructions for development 
 
 ## Contributing
 

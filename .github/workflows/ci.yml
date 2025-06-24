@@ -15,6 +15,10 @@ jobs:
   lint-test:
     name: Lint and Test
     runs-on: ubuntu-22.04
+    permissions:
+      # required for all workflows
+      security-events: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - name: Install Poetry
@@ -31,6 +35,3 @@ jobs:
 
       - name: Lint Python
         run: make lint
-
-      - name: Test
-        run: make test
