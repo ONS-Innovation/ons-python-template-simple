@@ -198,15 +198,6 @@ requirements.
 This file is automatically created and placed in [.github](/.github). It will automatically be filled with the repository owner.
 Make sure to update this file with the username or team for the code owners of the repository.
 
-##### Auto-fixing linting issues via GitHub Actions
-
-If you would like to auto-fix security issues using Bandit and commit the changes back to the PR, you can will need to create
-a **Personal Access Token** and add it as
-a [secret to your repository](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions).
-Without a **PAT** token, commits/PRs made by workflows do not trigger other workflows, including the Security Scan
-workflow.
-This is a security feature of GitHub Actions to prevent infinite loops.
-
 ### Updating Project with Template Changes
 
 > [!CAUTION]
@@ -268,8 +259,6 @@ The structure of the templated repo is as follows:
 │   │   ├── ci.yml                    # Workflow for Continuous Integration, running tests and other checks on commits to `main` and on pull requests.
 │   │   └── codeql.yml                # CodeQL workflow for automated identification of security vulnerabilities in the codebase. (Public Repos Only)
 │   ├── security-scan.yml.example     # Security scan workflow for running Bandit on the project. Needs to be renamed to security-scan.yml and moved to the [.github/workflows](.github/workflows) folder
-│   ├── security-scan-fix.yml.example # Security scan workflow with auto-fixing for running Bandit on the project. Needs to be renamed to security-scan-fix.yml and moved to the [.github/workflows](.github/workflows) folder.
-│   ├── ruff-fix.yml.example          # Ruff fix workflow with auto-fixing for running Ruff on the project. Needs to be renamed to ruff-fix.yml and moved to the [.github/workflows](.github/workflows) folder.
 │   ├── CODEOWNERS.yml                # CODEOWNERS file for the repository.
 │   ├── dependabot.yml                # Configuration for Dependabot, which automatically checks for outdated dependencies and creates pull requests to update them.
 │   ├── ISSUE_TEMPLATE.md             # Template for issues raised in the repository.
